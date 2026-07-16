@@ -1,0 +1,15 @@
+{
+  "name": "Hobson Concierge",
+  "short_name": "Hobson",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1D33",
+  "theme_color": "#0B1D33",
+  "icons": [
+    {
+      "src": "/hobson-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
