@@ -1,5 +1,5 @@
-import LeadsHome from "@/components/LeadsHome";
+import SimpleBrief from "@/components/SimpleBrief";
 
 export default function Page() {
-  return <LeadsHome />;
+  return <SimpleBrief />;
 }

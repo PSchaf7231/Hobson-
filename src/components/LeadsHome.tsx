@@ -9,6 +9,7 @@ import BottomNav from "./BottomNav";
 import DemoControls from "./DemoControls";
 import GlobalHeader, { type FilterKey } from "./GlobalHeader";
 import AddLeadModal from "./AddLeadModal";
+import Link from "next/link";
 
 interface Stats {
   hotToday: number;
@@ -122,6 +123,12 @@ export default function LeadsHome() {
       className="min-h-dvh w-full flex flex-col relative"
       style={{ background: "radial-gradient(120% 90% at 50% 0%, #1a3050 0%, #0B1D33 55%)" }}
     >
+      <Link
+        href="/"
+        className="sticky top-0 z-40 block bg-navy/95 backdrop-blur-md text-[10px] font-semibold uppercase tracking-wide text-gold-light px-5 pt-[calc(env(safe-area-inset-top)+8px)] pb-1"
+      >
+        ← Back to Morning Brief
+      </Link>
       <GlobalHeader
         search={search}
         onSearchChange={setSearch}
