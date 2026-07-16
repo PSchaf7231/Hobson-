@@ -81,10 +81,10 @@ export default function SimpleBrief() {
       {!expanded ? (
         <button
           onClick={() => setExpanded(true)}
-          style={{ width: "min(90%, 400px)" }}
-          className="flex items-center justify-center gap-4 min-h-[64px] bg-navy border border-gold/60 rounded-full px-6 shadow-[0_8px_24px_rgba(0,0,0,.5)] active:scale-[0.97] transition"
+          style={{ width: "min(94%, 460px)" }}
+          className="flex items-center justify-center gap-5 min-h-[96px] bg-navy border-2 border-gold/60 rounded-full px-8 shadow-[0_10px_32px_rgba(0,0,0,.55)] active:scale-[0.97] transition"
         >
-          <span className="font-display font-bold text-gold text-xl">H</span>
+          <span className="font-display font-bold text-gold text-4xl">H</span>
           <span
             role="button"
             aria-label="Hear brief"
@@ -94,59 +94,59 @@ export default function SimpleBrief() {
             }}
             className="text-gold"
           >
-            <SpeakerIcon className="w-5 h-5" />
+            <SpeakerIcon className="w-8 h-8" />
           </span>
         </button>
       ) : (
-        <div style={{ width: "min(90%, 400px)" }} className="flex flex-col items-center animate-fadeIn">
-          <div className="w-full flex items-center justify-between mb-8">
+        <div style={{ width: "min(94%, 460px)" }} className="flex flex-col items-center animate-fadeIn">
+          <div className="w-full flex items-center justify-between mb-10">
             <Link href="/dashboard" aria-label="More info" className="text-gold-light">
-              <MenuIcon className="w-6 h-6" />
+              <MenuIcon className="w-7 h-7" />
             </Link>
-            <ProfileIcon className="w-6 h-6 text-gold-light" />
+            <ProfileIcon className="w-7 h-7 text-gold-light" />
           </div>
 
-          <div className="font-display font-bold text-gold text-6xl mb-3">H</div>
-          <div className="text-gold text-sm font-bold tracking-[3px] uppercase mb-1">Hobson&apos;s Morning Brief</div>
-          <div className="text-gold/50 text-xs mb-8">✦</div>
+          <div className="font-display font-bold text-gold text-8xl mb-4">H</div>
+          <div className="text-gold text-base font-bold tracking-[3px] uppercase mb-2">Hobson&apos;s Morning Brief</div>
+          <div className="text-gold/50 text-sm mb-10">✦</div>
 
-          <div className="w-full border border-gold/50 rounded-2xl px-6 py-8 mb-10 text-center">
-            <div className="text-gold/60 mb-4">✦</div>
-            <p className="text-white/90 text-lg leading-relaxed">
+          <div className="w-full border border-gold/50 rounded-2xl px-7 py-10 mb-12 text-center">
+            <div className="text-gold/60 text-lg mb-5">✦</div>
+            <p className="text-white/90 text-xl leading-relaxed">
               {allCaughtUp ? "All caught up — nothing urgent right now. I'll let you know the moment something changes." : briefLine}
             </p>
           </div>
 
           {!allCaughtUp && lead && (
-            <div className="flex items-center gap-16">
-              <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-20">
+              <div className="flex flex-col items-center gap-3">
                 <button
                   onClick={dial}
                   aria-label={`Call ${lead.name}`}
-                  className="w-[84px] h-[84px] rounded-full border-2 border-gold flex items-center justify-center active:scale-95 transition"
+                  className="w-[104px] h-[104px] rounded-full border-2 border-gold flex items-center justify-center active:scale-95 transition"
                 >
-                  <PhoneIcon className="w-8 h-8 text-gold" />
+                  <PhoneIcon className="w-10 h-10 text-gold" />
                 </button>
-                <span className="text-gold text-xs font-bold tracking-widest uppercase">Call</span>
+                <span className="text-gold text-sm font-bold tracking-widest uppercase">Call</span>
               </div>
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center gap-3">
                 <button
                   onClick={openChooser}
                   aria-label={`Text ${lead.name}`}
-                  className="w-[84px] h-[84px] rounded-full border-2 border-gold flex items-center justify-center active:scale-95 transition"
+                  className="w-[104px] h-[104px] rounded-full border-2 border-gold flex items-center justify-center active:scale-95 transition"
                 >
-                  <MessageIcon className="w-8 h-8 text-gold" />
+                  <MessageIcon className="w-10 h-10 text-gold" />
                 </button>
-                <span className="text-gold text-xs font-bold tracking-widest uppercase">Text</span>
+                <span className="text-gold text-sm font-bold tracking-widest uppercase">Text</span>
               </div>
             </div>
           )}
 
-          <button onClick={hear} className="mt-10 text-gold-light/70 text-[11px] uppercase tracking-wide">
+          <button onClick={hear} className="mt-12 text-gold-light/70 text-sm uppercase tracking-wide">
             🔊 Hear this brief aloud
           </button>
 
-          <Link href="/dashboard" className="mt-3 text-slate-500 text-[11px] uppercase tracking-wide">
+          <Link href="/dashboard" className="mt-4 text-slate-500 text-sm uppercase tracking-wide">
             More info →
           </Link>
         </div>
