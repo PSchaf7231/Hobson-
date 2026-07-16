@@ -81,7 +81,8 @@ export default function SimpleBrief() {
       {!expanded ? (
         <button
           onClick={() => setExpanded(true)}
-          className="flex items-center gap-4 bg-navy border border-gold/60 rounded-full px-6 py-3.5 shadow-[0_8px_24px_rgba(0,0,0,.5)] active:scale-[0.97] transition"
+          style={{ width: "min(90%, 400px)" }}
+          className="flex items-center justify-center gap-4 min-h-[64px] bg-navy border border-gold/60 rounded-full px-6 shadow-[0_8px_24px_rgba(0,0,0,.5)] active:scale-[0.97] transition"
         >
           <span className="font-display font-bold text-gold text-xl">H</span>
           <span
@@ -97,7 +98,7 @@ export default function SimpleBrief() {
           </span>
         </button>
       ) : (
-        <div className="w-full max-w-sm flex flex-col items-center animate-fadeIn">
+        <div style={{ width: "min(90%, 400px)" }} className="flex flex-col items-center animate-fadeIn">
           <div className="w-full flex items-center justify-between mb-8">
             <Link href="/dashboard" aria-label="More info" className="text-gold-light">
               <MenuIcon className="w-6 h-6" />
