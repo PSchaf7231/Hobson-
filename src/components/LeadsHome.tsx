@@ -9,6 +9,7 @@ import BottomNav from "./BottomNav";
 import DemoControls from "./DemoControls";
 import GlobalHeader, { type FilterKey } from "./GlobalHeader";
 import AddLeadModal from "./AddLeadModal";
+import HearBriefPill from "./HearBriefPill";
 
 interface Stats {
   hotToday: number;
@@ -27,6 +28,7 @@ export default function LeadsHome() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<FilterKey>("all");
   const [addLeadOpen, setAddLeadOpen] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
   const lastAlertCheck = useRef<number>(Date.now());
 
   const refresh = useCallback(async () => {
@@ -42,7 +44,8 @@ export default function LeadsHome() {
     const res = await fetch(`/api/alerts?since=${since}`);
     const data = await res.json();
     if (data.alerts?.length) {
-      speak(data.alerts[0].spokenLine);
+      setSpeaking(true);
+      speak(data.alerts[0].spokenLine, () => setSpeaking(false));
     }
   }, []);
 
@@ -82,7 +85,8 @@ export default function LeadsHome() {
           hot.length === 1 ? "is" : "are"
         } the most worth acting on. I'd start there.`
       : `Good morning. Nothing urgent yet — I'll let you know the moment something changes.`;
-    speak(line);
+    setSpeaking(true);
+    speak(line, () => setSpeaking(false));
   }
 
   const visibleLeads = useMemo(() => {
@@ -190,6 +194,7 @@ export default function LeadsHome() {
         <DemoControls leads={leads} onEvent={refresh} />
       </div>
 
+      <HearBriefPill onTap={hearBrief} speaking={speaking} />
       <BottomNav active="Leads" />
 
       {callTarget && (

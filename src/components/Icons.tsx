@@ -31,3 +31,12 @@ export function PlusIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function SpeakerIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M4 9v6h4l5 4V5L8 9H4z" />
+      <path d="M17 8.5a5 5 0 010 7" />
+    </svg>
+  );
+}
