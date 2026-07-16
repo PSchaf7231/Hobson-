@@ -15,6 +15,7 @@ const config: Config = {
       fontFamily: {
         display: ["'Playfair Display'", "serif"],
         sans: ["'Inter'", "sans-serif"],
+        script: ["'Alex Brush'", "cursive"],
       },
       keyframes: {
         fadeIn: {
