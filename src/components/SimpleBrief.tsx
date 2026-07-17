@@ -4,18 +4,21 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Lead } from "@/lib/types";
 import { briefLineFor } from "@/lib/brief";
-import { speak } from "@/lib/voice";
-import { MenuIcon, MessageIcon, ProfileIcon, SpeakerIcon } from "./Icons";
+import { speak, stopSpeaking } from "@/lib/voice";
+import { MenuIcon, MessageIcon, ProfileIcon } from "./Icons";
 import PhoneIcon from "./PhoneIcon";
 import ActionSheet from "./ActionSheet";
+import HobsonPill from "./HobsonPill";
 
 const POLL_MS = 5000;
+const AGENT_DISPLAY_NAME = "Paul Schafranick";
 
 export default function SimpleBrief() {
   const [lead, setLead] = useState<Lead | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [chooserOpen, setChooserOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [speaking, setSpeaking] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -39,7 +42,18 @@ export default function SimpleBrief() {
   const allCaughtUp = lead ? Boolean(lead.lastContactedAt) : true;
 
   function hear() {
-    speak(briefLine);
+    speak(briefLine, () => setSpeaking(false));
+    setSpeaking(true);
+  }
+
+  function toggleVoice(e: React.MouseEvent) {
+    e.stopPropagation();
+    if (speaking) {
+      stopSpeaking();
+      setSpeaking(false);
+      return;
+    }
+    hear();
   }
 
   function dial() {
@@ -79,24 +93,16 @@ export default function SimpleBrief() {
       style={{ background: "radial-gradient(120% 90% at 50% 0%, #1a3050 0%, #0B1D33 55%)" }}
     >
       {!expanded ? (
-        <button
+        <div
+          role="button"
+          tabIndex={0}
           onClick={() => setExpanded(true)}
-          style={{ width: "min(94%, 460px)" }}
-          className="flex items-center justify-center gap-5 min-h-[96px] bg-navy border-2 border-gold/60 rounded-full px-8 shadow-[0_10px_32px_rgba(0,0,0,.55)] active:scale-[0.97] transition"
+          onKeyDown={(e) => e.key === "Enter" && setExpanded(true)}
+          style={{ width: "min(94%, 400px)" }}
+          className="active:scale-[0.97] transition cursor-pointer"
         >
-          <span className="font-display font-bold text-gold text-4xl">H</span>
-          <span
-            role="button"
-            aria-label="Hear brief"
-            onClick={(e) => {
-              e.stopPropagation();
-              hear();
-            }}
-            className="text-gold"
-          >
-            <SpeakerIcon className="w-8 h-8" />
-          </span>
-        </button>
+          <HobsonPill name={AGENT_DISPLAY_NAME} onToggleVoice={toggleVoice} />
+        </div>
       ) : (
         <div style={{ width: "min(94%, 460px)" }} className="flex flex-col items-center animate-fadeIn">
           <div className="w-full flex items-center justify-between mb-10">
