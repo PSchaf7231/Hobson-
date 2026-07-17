@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import RegisterServiceWorker from "@/components/RegisterServiceWorker";
 
 export const metadata: Metadata = {
   title: "Hobson Concierge",
   description: "Hobson surfaces the leads you should act on today, in plain language, with one-tap call and text.",
   manifest: "/manifest.json",
   icons: {
-    icon: "/hobson-icon.svg",
-    apple: "/hobson-icon.svg",
+    icon: "/icon-192.png",
+    apple: "/icon-192.png",
   },
   appleWebApp: {
     capable: true,
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <RegisterServiceWorker />
+        {children}
+      </body>
     </html>
   );
 }
