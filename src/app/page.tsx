@@ -1,5 +1,5 @@
-import LeadsHome from "@/components/LeadsHome";
+import ConciergeHome from "@/components/ConciergeHome";
 
 export default function Page() {
-  return <LeadsHome />;
+  return <ConciergeHome />;
 }
