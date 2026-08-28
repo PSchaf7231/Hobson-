@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hobsonconcierge.com"),
   title: "Hobson Concierge",
   description: "Hobson surfaces the leads you should act on today, in plain language, with one-tap call and text.",
   manifest: "/manifest.json",
