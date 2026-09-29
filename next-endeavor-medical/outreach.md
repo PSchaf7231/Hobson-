@@ -1,6 +1,6 @@
 # Physician-owner outreach drafts
 
-Replace [BRACKETED] fields. Keep the brokerage name and office address on every piece.
+Replace [BRACKETED] fields. Keep the brokerage name and office address on every piece (Florida advertising rule). Add the new brokerage before sending.
 
 ---
 
@@ -32,7 +32,7 @@ With respect,
 [signature]
 
 Paul Schafranick
-Next Endeavor CRE, powered by VantaSure Realty
+Next Endeavor CRE · [BROKERAGE NAME]
 (561) 255-7285 · 15000@nextendeavorcre.com
 [BROKERAGE OFFICE ADDRESS]
 
@@ -53,7 +53,7 @@ For one client I've closed more than $90M in medical property over a five-year p
 If you're curious what [PROPERTY ADDRESS] would bring today, as a sale or a sale-leaseback, reply **BOV** and I'll send a confidential valuation. No listing, no obligation.
 
 Paul Schafranick
-Next Endeavor CRE, powered by VantaSure Realty
+Next Endeavor CRE · [BROKERAGE NAME]
 (561) 255-7285
 [BROKERAGE OFFICE ADDRESS]
 
