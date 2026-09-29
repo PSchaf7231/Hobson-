@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heaven Lounge</title>
+<meta name="description" content="Heaven, a jazz and cigar lounge in Boca Raton and Delray Beach. Cocktails, the Cigar Vault, live jazz, and a backyard that feels like home.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="preload" as="image" href="assets/walk/f001.jpg">
+<style>
+  :root {
+    color-scheme: dark;
+    --ink: #0A0A0C;
+    --night: #11131C;
+    --night-2: #171A26;
+    --gold: #D9A55B;
+    --gold-soft: #F0CF94;
+    --cream: #F2E8D8;
+    --muted: #A99F90;
+    --line: rgba(217, 165, 91, 0.22);
+    --serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+    --mark: "Cinzel", "Trajan Pro", Georgia, serif;
+    --sans: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --gutter: clamp(18px, 5vw, 72px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--ink); color: var(--cream);
+    font: 300 17px/1.7 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+  p { margin: 0; }
+  :focus-visible { outline: 1px solid var(--gold-soft); outline-offset: 4px; }
+  .label { font: 500 11px/1 var(--mark); letter-spacing: .32em; text-transform: uppercase; color: var(--gold); }
+
+  /* ---------- Top bar ---------- */
+  .bar {
+    position: fixed; inset: 0 0 auto 0; z-index: 30;
+    padding: calc(env(safe-area-inset-top, 0px) + 18px) var(--gutter) 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    background: linear-gradient(to bottom, rgba(10,10,12,.75), rgba(10,10,12,0));
+    pointer-events: none;
+  }
+  .bar > * { pointer-events: auto; }
+  .wordmark { font: 500 18px/1 var(--mark); letter-spacing: .34em; color: var(--gold-soft); text-decoration: none; text-shadow: 0 0 18px rgba(217,165,91,.45); }
+  .bar-right { display: flex; align-items: center; gap: 10px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+    font: 400 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cream);
+    background: rgba(17,19,28,.55); border: 1px solid var(--line); border-radius: 999px;
+    padding: 11px 16px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    text-decoration: none; transition: border-color .3s, background .3s;
+  }
+  .pill:hover { border-color: var(--gold); background: rgba(217,165,91,.12); }
+  .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+  .eq i { width: 2px; height: 3px; background: var(--gold); border-radius: 1px; }
+  .playing .eq i { animation: eq 1s ease-in-out infinite; }
+  .playing .eq i:nth-child(2) { animation-delay: .2s; } .playing .eq i:nth-child(3) { animation-delay: .45s; } .playing .eq i:nth-child(4) { animation-delay: .1s; }
+  @keyframes eq { 0%,100% { height: 3px; } 50% { height: 12px; } }
+  @media (max-width: 520px) { .pill.reserve { display: none; } }
+
+  /* ---------- Intro ---------- */
+  .intro { position: relative; height: 100vh; height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden; }
+  .intro::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 55%, rgba(217,165,91,.16), transparent 70%);
+  }
+  .intro-inner { position: relative; display: grid; gap: 22px; justify-items: center; padding-inline: var(--gutter); }
+  .halo { width: 120px; height: 44px; border: 1px solid rgba(240,207,148,.55); border-radius: 50%; box-shadow: 0 0 30px rgba(217,165,91,.35), inset 0 0 18px rgba(217,165,91,.25); margin-bottom: -6px; animation: halo 5s ease-in-out infinite; }
+  @keyframes halo { 0%,100% { transform: translateY(0); opacity: .85; } 50% { transform: translateY(-6px); opacity: 1; } }
+  .intro h1 {
+    font: 500 clamp(64px, 14vw, 168px)/.9 var(--mark); letter-spacing: .12em; margin-right: -.12em;
+    background: linear-gradient(180deg, #FFF3DA 0%, var(--gold-soft) 45%, var(--gold) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 28px rgba(217,165,91,.35));
+  }
+  .intro .tag { font: italic 400 clamp(22px, 3vw, 30px)/1.3 var(--serif); color: var(--cream); }
+  .intro .where { font: 400 12px/1 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+  .enter { margin-top: 26px; display: grid; justify-items: center; gap: 12px; font: 400 11px/1 var(--sans); letter-spacing: .34em; text-transform: uppercase; color: var(--gold-soft); text-decoration: none; }
+  .enter span { width: 1px; height: 54px; background: linear-gradient(var(--gold), transparent); animation: drip 2.4s ease-in-out infinite; transform-origin: top; }
+  @keyframes drip { 0% { transform: scaleY(0); opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+  .intro-inner > * { animation: rise 1.6s cubic-bezier(.2,.7,.2,1) both; }
+  .intro-inner > *:nth-child(2) { animation-delay: .15s; } .intro-inner > *:nth-child(3) { animation-delay: .35s; }
+  .intro-inner > *:nth-child(4) { animation-delay: .5s; } .intro-inner > *:nth-child(5) { animation-delay: .8s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+
+  /* ---------- Walk-in (scroll-driven) ---------- */
+  .walk { position: relative; height: 560vh; }
+  .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--ink); }
+  #walk { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 75% at 50% 50%, transparent 55%, rgba(10,10,12,.7) 100%),
+      linear-gradient(to top, rgba(10,10,12,.85) 0%, rgba(10,10,12,0) 38%),
+      linear-gradient(to bottom, rgba(10,10,12,.55) 0%, rgba(10,10,12,0) 22%);
+  }
+  .fade-in { position: absolute; inset: 0; background: var(--ink); z-index: 2; pointer-events: none; }
+  .caption {
+    position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(40px, 9vh, 96px));
+    max-width: 620px; display: grid; gap: 12px; opacity: 0; transform: translateY(16px);
+    transition: opacity .7s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .caption.on { opacity: 1; transform: none; }
+  .caption h2 { font: 400 clamp(38px, 5.6vw, 72px)/1.02 var(--serif); letter-spacing: -.01em; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+  .caption h2 em { color: var(--gold-soft); }
+  .caption p { font-size: clamp(16px, 1.6vw, 19px); color: rgba(242,232,216,.86); max-width: 44ch; text-shadow: 0 2px 16px rgba(0,0,0,.7); }
+  .rail {
+    position: absolute; z-index: 3; right: var(--gutter); top: 50%; transform: translateY(-50%);
+    list-style: none; margin: 0; padding: 0; display: grid; gap: 18px;
+  }
+  .rail li { text-shadow: 0 1px 8px rgba(0,0,0,.8); display: flex; align-items: center; justify-content: flex-end; gap: 12px; font: 400 10.5px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; color: rgba(242,232,216,.4); transition: color .4s; }
+  .rail li::after { content: ""; width: 18px; height: 1px; background: currentColor; transition: width .4s, background .4s; }
+  .rail li.on { color: var(--gold-soft); }
+  .rail li.on::after { width: 36px; background: var(--gold); }
+  @media (max-width: 720px) { .rail { display: none; } }
+  .loadbar { position: absolute; z-index: 4; left: 0; bottom: 0; height: 2px; background: var(--gold); width: 0; transition: width .3s, opacity .6s; }
+
+  /* ---------- Sections ---------- */
+  .wrap { max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
+  section.block { padding-block: clamp(90px, 13vw, 170px); }
+  .head { display: grid; gap: 18px; max-width: 640px; }
+  .head h2 { font: 400 clamp(40px, 5.4vw, 68px)/1.02 var(--serif); }
+  .head h2 em { color: var(--gold-soft); }
+  .head p { color: rgba(242,232,216,.8); max-width: 52ch; }
+
+  .inside { background: linear-gradient(to bottom, var(--ink), var(--night) 30%, var(--night)); }
+  .inside-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: center; }
+  .frame {
+    position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 16 / 9; max-width: 100%;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px var(--line);
+  }
+  .frame video, .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .frame::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 80px rgba(10,10,12,.55); pointer-events: none; }
+  .menu { list-style: none; margin: 38px 0 0; padding: 0; display: grid; gap: 0; }
+  .menu li { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 18px 0; border-top: 1px solid var(--line); }
+  .menu li:last-child { border-bottom: 1px solid var(--line); }
+  .menu h3 { font: italic 400 26px/1.1 var(--serif); color: var(--gold-soft); }
+  .menu .when { font: 400 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); align-self: center; }
+  .menu p { grid-column: 1 / -1; font-size: 15.5px; color: rgba(242,232,216,.78); }
+  @media (max-width: 880px) { .inside-grid { grid-template-columns: 1fr; } }
+
+  .vault { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: center; margin-top: clamp(80px, 10vw, 140px); }
+  .vault .frame { aspect-ratio: 1 / 1; }
+  @media (max-width: 880px) { .vault { grid-template-columns: 1fr; } .vault .frame { order: -1; } }
+
+  .backyard { position: relative; min-height: 110vh; display: grid; align-items: end; overflow: hidden; isolation: isolate; }
+  .backyard img { position: absolute; left: 0; top: -12%; width: 100%; height: 124%; object-fit: cover; z-index: -2; will-change: transform; }
+  .backyard::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(10,10,12,.95) 0%, rgba(10,10,12,.35) 45%, rgba(10,10,12,.55) 100%); }
+  .backyard .wrap { width: 100%; padding-block: clamp(80px, 12vw, 150px); }
+  .quote { font: italic 400 clamp(30px, 4.4vw, 54px)/1.15 var(--serif); max-width: 22ch; margin-top: 22px; }
+  .quote::before { content: "\201C"; color: var(--gold); }
+  .quote::after { content: "\201D"; color: var(--gold); }
+
+  /* Visit */
+  .visit { background: var(--night); }
+  .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+  @media (max-width: 880px) { .visit-grid { grid-template-columns: 1fr; } }
+  .hours { list-style: none; margin: 34px 0 0; padding: 0; font-variant-numeric: tabular-nums; }
+  .hours li { display: flex; justify-content: space-between; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .hours li span:first-child { color: var(--muted); letter-spacing: .06em; }
+  .note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  form.reserve {
+    background: var(--night-2); border: 1px solid var(--line); border-radius: 4px; padding: clamp(24px, 4vw, 40px);
+    display: grid; gap: 18px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.8);
+  }
+  form.reserve h3 { font: 400 32px/1.1 var(--serif); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
+  label { display: grid; gap: 8px; font: 400 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  input, select {
+    font: 300 16px/1.2 var(--sans); color: var(--cream); background: var(--ink);
+    border: 1px solid var(--line); border-radius: 3px; padding: 13px 14px; width: 100%;
+  }
+  input:focus, select:focus { outline: none; border-color: var(--gold); }
+  .gold-btn {
+    font: 500 12px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; cursor: pointer;
+    color: var(--ink); background: linear-gradient(180deg, var(--gold-soft), var(--gold)); border: 0; border-radius: 3px;
+    padding: 18px 22px; box-shadow: 0 10px 30px -10px rgba(217,165,91,.6); transition: transform .25s, box-shadow .25s;
+  }
+  .gold-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(217,165,91,.75); }
+  .confirm { display: none; border-left: 2px solid var(--gold); padding: 6px 0 6px 16px; font-size: 15px; color: rgba(242,232,216,.88); }
+  .confirm.show { display: block; }
+  .confirm strong { color: var(--gold-soft); font-weight: 400; }
+
+  footer { padding-block: 44px calc(44px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 30px; align-items: center; }
+  footer .wordmark { font-size: 15px; }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--gold-soft); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="wordmark" href="#top">HEAVEN</a>
+  <div class="bar-right">
+    <button class="pill" id="music" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="music-label">Play the jazz</span></button>
+    <a class="pill reserve" href="#visit">Reserve</a>
+  </div>
+</header>
+<audio id="jazz" src="assets/jazz.mp3" loop preload="none"></audio>
+
+<main id="top">
+  <section class="intro" aria-label="Welcome">
+    <div class="intro-inner">
+      <span class="halo" aria-hidden="true"></span>
+      <h1>HEAVEN</h1>
+      <p class="tag">Jazz, cocktails and the Cigar Vault.</p>
+      <p class="where">Boca Raton · Delray Beach</p>
+      <a class="enter" href="#walk-in">Scroll to enter<span aria-hidden="true"></span></a>
+    </div>
+  </section>
+
+  <section class="walk" id="walk-in" aria-label="Walk through Heaven">
+    <div class="stage">
+      <canvas id="walk" aria-hidden="true"></canvas>
+      <div class="fade-in" id="fade"></div>
+
+      <div class="caption" data-from="0" data-to="0.2">
+        <span class="label">The door</span>
+        <h2>Leave the day <em>at the door.</em></h2>
+        <p>One step past the gold arch and the city goes quiet.</p>
+      </div>
+      <div class="caption" data-from="0.22" data-to="0.43">
+        <span class="label">The hallway</span>
+        <h2>Follow <em>the music.</em></h2>
+        <p>Low light, a warm glow, and a trio already warming up.</p>
+      </div>
+      <div class="caption" data-from="0.46" data-to="0.68">
+        <span class="label">The lounge</span>
+        <h2>Cocktails, the Cigar Vault <em>and live jazz.</em></h2>
+        <p>Velvet chairs, a proper pool table, and a bar that knows your order by the second visit.</p>
+      </div>
+      <div class="caption" data-from="0.72" data-to="1.01">
+        <span class="label">The backyard</span>
+        <h2>Then step <em>out back.</em></h2>
+        <p>Fire, open sky, and deep sofas made for staying late.</p>
+      </div>
+
+      <ol class="rail" aria-hidden="true">
+        <li data-from="0" data-to="0.21">Door</li>
+        <li data-from="0.21" data-to="0.45">Hallway</li>
+        <li data-from="0.45" data-to="0.7">Lounge</li>
+        <li data-from="0.7" data-to="1.01">Backyard</li>
+      </ol>
+      <div class="loadbar" id="loadbar"></div>
+    </div>
+  </section>
+
+  <section class="block inside" id="inside">
+    <div class="wrap">
+      <div class="inside-grid">
+        <div class="frame reveal">
+          <video src="assets/lounge-loop.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/interior.jpg" aria-label="Guests arriving in the lounge"></video>
+        </div>
+        <div class="reveal">
+          <div class="head">
+            <span class="label">Inside</span>
+            <h2>A room built for <em>long evenings.</em></h2>
+          </div>
+          <ul class="menu">
+            <li><h3>Cocktails</h3><span class="when">From 5 PM</span><p>Classic builds, smoked old fashioneds, and a reserve list behind the arch.</p></li>
+            <li><h3>The Cigar Vault</h3><span class="when">Members &amp; guests</span><p>A humidor wall of Dominican, Nicaraguan and Cuban-seed selections, cut to order.</p></li>
+            <li><h3>Live Jazz</h3><span class="when">Thu to Sat, 9 PM</span><p>Trios and quartets on the small stage. Close enough to feel the bass.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vault">
+        <div class="reveal">
+          <div class="head">
+            <span class="label">The details</span>
+            <h2>Gold light. <em>Dark velvet.</em> No rush.</h2>
+            <p>Arched bottle walls, pendant lights over the felt, and chairs deep enough to lose an hour in. Everything here is designed to slow you down.</p>
+          </div>
+        </div>
+        <div class="frame reveal"><img src="assets/interior.jpg" alt="The lounge with arched Cocktails and Cigar Vault displays, a pool table and grey lounge chairs" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="backyard" aria-label="The backyard">
+    <img id="patio-img" src="assets/patio.jpg" alt="The backyard at dusk, with a fire table, deep sofas and warm lit slat walls" loading="lazy">
+    <div class="wrap reveal">
+      <span class="label">The backyard</span>
+      <p class="quote">I'm glad we came here. It feels like home.</p>
+    </div>
+  </section>
+
+  <section class="block visit" id="visit">
+    <div class="wrap visit-grid">
+      <div class="reveal">
+        <div class="head">
+          <span class="label">Visit</span>
+          <h2>Your table <em>is waiting.</em></h2>
+          <p>Boca Raton · Delray Beach. Smart attire, no hurry, and the band starts at nine.</p>
+        </div>
+        <ul class="hours">
+          <li><span>Mon to Wed</span><span>5 PM to 12 AM</span></li>
+          <li><span>Thu to Sat</span><span>5 PM to 2 AM</span></li>
+          <li><span>Sunday</span><span>4 PM to 11 PM</span></li>
+        </ul>
+        <p class="note">Concept preview. Hours and details are samples.</p>
+      </div>
+
+      <form class="reserve reveal" id="reserve-form" novalidate>
+        <h3>Reserve a table</h3>
+        <div class="row">
+          <label for="r-date">Date<input id="r-date" name="date" type="date" required></label>
+          <label for="r-time">Time
+            <select id="r-time" name="time">
+              <option>7:00 PM</option><option>8:00 PM</option><option selected>9:00 PM</option><option>10:00 PM</option><option>11:00 PM</option>
+            </select>
+          </label>
+        </div>
+        <div class="row">
+          <label for="r-party">Guests
+            <select id="r-party" name="party"><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
+          </label>
+          <label for="r-area">Seating
+            <select id="r-area" name="area"><option>Lounge</option><option>Near the stage</option><option>Cigar Vault</option><option>Backyard</option></select>
+          </label>
+        </div>
+        <label for="r-name">Name<input id="r-name" name="name" type="text" autocomplete="name" placeholder="Your name"></label>
+        <button class="gold-btn" type="submit">Request my table</button>
+        <p class="confirm" id="confirm" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark">HEAVEN</span>
+    <p>Concept site by <strong>Set &amp; Forget Media</strong> · <a href="tel:+15612557285">(561) 255-7285</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Music toggle ---------- */
+  var audio = document.getElementById("jazz");
+  var mBtn = document.getElementById("music"), mLabel = document.getElementById("music-label");
+  var fadeTimer = null;
+  function fadeTo(target, done) {
+    clearInterval(fadeTimer);
+    fadeTimer = setInterval(function () {
+      var v = audio.volume + (target > audio.volume ? 0.04 : -0.06);
+      if ((target > audio.volume && v >= target) || (target <= audio.volume && v <= target)) {
+        audio.volume = Math.max(0, Math.min(1, target)); clearInterval(fadeTimer); if (done) done(); return;
+      }
+      audio.volume = Math.max(0, Math.min(1, v));
+    }, 60);
+  }
+  mBtn.addEventListener("click", function () {
+    if (audio.paused) {
+      audio.volume = 0;
+      var p = audio.play();
+      if (p && p.then) p.then(function () { fadeTo(0.6); }).catch(function () { mLabel.textContent = "Tap again for jazz"; });
+      else fadeTo(0.6);
+      mBtn.classList.add("playing"); mBtn.setAttribute("aria-pressed", "true"); mLabel.textContent = "Jazz on";
+    } else {
+      fadeTo(0, function () { audio.pause(); });
+      mBtn.classList.remove("playing"); mBtn.setAttribute("aria-pressed", "false"); mLabel.textContent = "Play the jazz";
+    }
+  });
+
+  /* ---------- Scroll-driven walk-in ---------- */
+  var FRAMES = 120, FOCUS_X = 0.567;
+  var canvas = document.getElementById("walk"), ctx = canvas.getContext("2d");
+  var section = document.getElementById("walk-in");
+  var fade = document.getElementById("fade");
+  var loadbar = document.getElementById("loadbar");
+  var captions = Array.prototype.slice.call(document.querySelectorAll(".caption"));
+  var railItems = Array.prototype.slice.call(document.querySelectorAll(".rail li"));
+  var imgs = new Array(FRAMES), loaded = 0;
+  function src(i) { return "assets/walk/f" + String(i + 1).padStart(3, "0") + ".jpg"; }
+
+  // Load a coarse pass first so scrubbing works early, then fill the gaps
+  var order = [], seen = {};
+  [16, 8, 4, 2, 1].forEach(function (step) {
+    for (var i = 0; i < FRAMES; i += step) if (!seen[i]) { seen[i] = 1; order.push(i); }
+  });
+  var inflight = 0, cursor = 0, MAX = 6;
+  function pump() {
+    while (inflight < MAX && cursor < order.length) {
+      (function (i) {
+        var im = new Image(); inflight++;
+        im.decoding = "async";
+        im.onload = function () {
+          imgs[i] = im; loaded++; inflight--;
+          loadbar.style.width = (loaded / FRAMES * 100) + "%";
+          if (loaded === FRAMES) loadbar.style.opacity = "0";
+          if (i === 0) draw(true);
+          pump();
+        };
+        im.onerror = function () { inflight--; pump(); };
+        im.src = src(i);
+      })(order[cursor++]);
+    }
+  }
+  pump();
+
+  function nearest(i) {
+    if (imgs[i]) return imgs[i];
+    for (var d = 1; d < FRAMES; d++) {
+      if (i - d >= 0 && imgs[i - d]) return imgs[i - d];
+      if (i + d < FRAMES && imgs[i + d]) return imgs[i + d];
+    }
+    return null;
+  }
+
+  var cw = 0, ch = 0, dpr = 1;
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cw = canvas.clientWidth; ch = canvas.clientHeight;
+    canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr);
+    draw(true);
+  }
+
+  var target = 0, current = 0, lastDrawn = -1, progress = 0;
+  function readProgress() {
+    var r = section.getBoundingClientRect();
+    var total = section.offsetHeight - window.innerHeight;
+    progress = Math.min(1, Math.max(0, -r.top / total));
+    target = progress * (FRAMES - 1);
+  }
+  function draw(force) {
+    var idx = Math.round(current);
+    if (!force && idx === lastDrawn) return;
+    var im = nearest(idx);
+    if (!im) return;
+    lastDrawn = idx;
+    var W = canvas.width, H = canvas.height, iw = im.naturalWidth, ih = im.naturalHeight;
+    var portrait = W / H < 0.9;
+    // Phones get a widescreen band so both guests stay in frame; wider screens fill edge to edge
+    var s = portrait ? Math.max(W / (iw * 0.68), (H * 0.46) / ih) : Math.max(W / iw, H / ih);
+    var dw = iw * s, dh = ih * s;
+    var dx = Math.min(0, Math.max(W - dw, W / 2 - dw * FOCUS_X));
+    var dy = portrait ? (H - dh) * 0.4 : (H - dh) / 2;
+    if (portrait) { ctx.fillStyle = "#0A0A0C"; ctx.fillRect(0, 0, W, H); }
+    ctx.drawImage(im, dx, dy, dw, dh);
+    if (portrait) {
+      // Feather the band's top and bottom edges into the dark
+      var f = Math.round(dh * 0.18);
+      var g1 = ctx.createLinearGradient(0, dy, 0, dy + f);
+      g1.addColorStop(0, "rgba(10,10,12,1)"); g1.addColorStop(1, "rgba(10,10,12,0)");
+      ctx.fillStyle = g1; ctx.fillRect(0, dy - 1, W, f + 1);
+      var g2 = ctx.createLinearGradient(0, dy + dh - f, 0, dy + dh);
+      g2.addColorStop(0, "rgba(10,10,12,0)"); g2.addColorStop(1, "rgba(10,10,12,1)");
+      ctx.fillStyle = g2; ctx.fillRect(0, dy + dh - f, W, f + 1);
+    }
+  }
+  function inRange(el) { var a = +el.dataset.from, b = +el.dataset.to; return progress >= a && progress < b; }
+
+  var running = false;
+  function tick() {
+    readProgress();
+    current += (target - current) * (reduce ? 1 : 0.18);
+    if (Math.abs(target - current) < 0.01) current = target;
+    draw(false);
+    // Fade the stage up from black as the section arrives
+    var r = section.getBoundingClientRect();
+    fade.style.opacity = Math.max(0, Math.min(1, r.top / (window.innerHeight * 0.6))).toFixed(3);
+    captions.forEach(function (c) { c.classList.toggle("on", inRange(c) && r.top <= 0 && r.bottom > window.innerHeight * 0.5); });
+    railItems.forEach(function (li) { li.classList.toggle("on", inRange(li)); });
+    requestAnimationFrame(tick);
+  }
+  window.addEventListener("resize", size);
+  size();
+  if (!running) { running = true; requestAnimationFrame(tick); }
+
+  /* ---------- Backyard parallax ---------- */
+  var patio = document.getElementById("patio-img");
+  if (!reduce) {
+    window.addEventListener("scroll", function () {
+      var r = patio.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      patio.style.transform = "translate3d(0," + (p * -60).toFixed(1) + "px,0) scale(1.04)";
+    }, { passive: true });
+  }
+
+  /* ---------- Reveal ---------- */
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) io.observe(el); else el.classList.add("in");
+    });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ---------- Reservation (demo) ---------- */
+  var dateInput = document.getElementById("r-date");
+  var d = new Date(); d.setDate(d.getDate() + ((5 - d.getDay() + 7) % 7 || 7));
+  dateInput.value = d.toISOString().slice(0, 10);
+  document.getElementById("reserve-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target, name = (document.getElementById("r-name").value || "").trim();
+    var when = new Date(document.getElementById("r-date").value + "T12:00:00");
+    var day = isNaN(when) ? "your night" : when.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+    var c = document.getElementById("confirm");
+    c.innerHTML = "";
+    var strong = document.createElement("strong");
+    strong.textContent = (name ? name + ", your table" : "Table") + " for " + document.getElementById("r-party").value + " on " + day + " at " + document.getElementById("r-time").value + ".";
+    c.appendChild(strong);
+    c.appendChild(document.createTextNode(" On the live site this books straight into the calendar and texts a confirmation within seconds."));
+    c.classList.add("show");
+  });
+})();
+</script>
+</body>
+</html>
