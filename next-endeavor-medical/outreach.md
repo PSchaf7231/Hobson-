@@ -15,7 +15,7 @@ Dear Dr. [LAST],
 
 I'm writing about your building at [PROPERTY ADDRESS].
 
-Over the past several years I've helped one long-term investor client acquire about $90 million of medical real estate: 25 buildings, ten of them sale-leasebacks with physicians who wanted to unlock the value of their building without leaving it.
+Over the past five years I've helped one investor client acquire more than $90 million of medical real estate, including ten sale-leasebacks with physicians who wanted to unlock the value of their building without leaving it. Along the way I returned more than $350,000 of my commission to that client.
 
 Demand for well-located medical property in South Florida remains strong, and many owners who bought years ago are sitting on equity they could put to work. Depending on your plans, that can mean:
 
@@ -33,7 +33,7 @@ With respect,
 
 Paul Schafranick
 Next Endeavor CRE, powered by VantaSure Realty
-(561) 255-7285 · Paul.Schafranick@gmail.com
+(561) 255-7285 · 15000@nextendeavorcre.com
 [BROKERAGE OFFICE ADDRESS]
 
 P.S. If you've already sold your practice but still own the building, a sale-leaseback to your new operator is often the cleanest next step. I'm happy to walk through how those are priced.
@@ -48,7 +48,7 @@ Dr. [LAST],
 
 I work with investors who buy medical buildings in South Florida, including sale-leasebacks where the physician sells the building and stays as the tenant.
 
-For one client I've closed about $90M in medical property, ten of those deals sale-leasebacks.
+For one client I've closed more than $90M in medical property over five years, including ten sale-leasebacks.
 
 If you're curious what [PROPERTY ADDRESS] would bring today, as a sale or a sale-leaseback, reply **BOV** and I'll send a confidential valuation. No listing, no obligation.
 
