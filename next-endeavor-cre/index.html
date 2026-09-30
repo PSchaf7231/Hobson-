@@ -281,30 +281,35 @@
       <h1>Commercial Real Estate Done Right.</h1>
       <div class="badge"><b>My $15,000. Your Legal Fees. Covered.</b><span>On qualifying commercial transactions. A credit you won't find anywhere else.</span></div>
       <div class="actions">
-        <a class="btn gold" href="#search">Start Your Property Search</a>
-        <a class="btn line" href="tel:+15612557285">Call Paul: 561-255-7285</a>
+        <a class="btn gold" href="tel:+15612557285">Call Paul: 561-255-7285</a>
+        <a class="btn line" href="#credit">How the $15,000 works</a>
       </div>
       <p class="owners-link">Own a medical building? <a href="owners/">See your options for a sale or sale-leaseback</a></p>
     </div>
   </section>
 
-  <!-- Lead capture -->
-  <section class="lead" id="search" aria-label="Property alerts">
+  <!-- Buy box -->
+  <section class="lead" id="buybox" aria-label="Send your buy box">
     <div class="wrap">
       <div>
-        <h2>Get Notified When Your Ideal Property Hits the Market</h2>
-        <p>Tell me your range. I'll send matching NNN medical properties, including off-market opportunities.</p>
+        <span class="kicker">Off-market first</span>
+        <h2 style="margin-top:10px">Send Me Your Buy Box. I'll Bring You the Deals.</h2>
+        <p>Many of the best medical NNN properties never reach the listing sites. Tell me what you're looking for and I'll go find it, including off-market opportunities from owners and operators I work with.</p>
       </div>
       <form class="grid" id="lead-form" novalidate>
         <label for="l-first">First name<input id="l-first" name="first" autocomplete="given-name" required></label>
         <label for="l-last">Last name<input id="l-last" name="last" autocomplete="family-name"></label>
         <label for="l-email">Email address<input id="l-email" name="email" type="email" autocomplete="email" required></label>
         <label for="l-phone">Phone number<input id="l-phone" name="phone" type="tel" autocomplete="tel"></label>
-        <label class="full" for="l-range">Investment range
-          <select id="l-range" name="range"><option>Under $1M</option><option>$1M–$3M</option><option selected>$3M–$7M</option><option>$7M+</option></select>
+        <label for="l-range">Price range
+          <select id="l-range" name="range"><option>$3M–$7M</option><option>$7M–$12M</option><option>$12M–$20M</option><option>$20M+</option><option>Not sure yet</option></select>
         </label>
-        <button class="btn navy full" type="submit">Send Me Properties</button>
-        <p class="form-note" id="lead-note" role="status"></p>
+        <label for="l-1031">In a 1031 exchange?
+          <select id="l-1031" name="exchange"><option>No</option><option>Yes, clock is running</option><option>Planning one soon</option></select>
+        </label>
+        <label class="full" for="l-want">What you're looking for (optional)<input id="l-want" name="want" placeholder="e.g. dialysis or ASC, 10+ years of lease left, Southeast"></label>
+        <button class="btn navy full" type="submit">Send My Buy Box</button>
+        <p class="form-note" id="lead-note" role="status">In a 1031 with a deadline? Call 561-255-7285 so we don't lose a day.</p>
       </form>
     </div>
   </section>
@@ -502,8 +507,8 @@
       note.textContent = "Your email app should open with your details filled in. Prefer to talk? Call 561-255-7285.";
     });
   }
-  wire("lead-form", "lead-note", "Property alerts", function (f) {
-    return "Name: " + f.first.value + " " + f.last.value + "\nEmail: " + f.email.value + "\nPhone: " + f.phone.value + "\nInvestment range: " + f.range.value;
+  wire("lead-form", "lead-note", "Buy box", function (f) {
+    return "Name: " + f.first.value + " " + f.last.value + "\nEmail: " + f.email.value + "\nPhone: " + f.phone.value + "\nPrice range: " + f.range.value + "\n1031 exchange: " + f.exchange.value + "\nLooking for: " + f.want.value;
   });
   wire("contact-form", "contact-note", "Website inquiry", function (f) {
     return "Name: " + f.name.value + "\nPhone or email: " + f.reach.value + "\n\n" + f.msg.value;
