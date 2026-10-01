@@ -103,6 +103,9 @@
   .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .feat { position: relative; border-radius: 18px; overflow: hidden; min-height: 360px; display: grid; align-content: end; color: #fff; isolation: isolate; }
   .feat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  .feat .live { position: absolute; inset: 0; z-index: -2; }
+  .feat .live canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .6s; }
+  .feat .live canvas.on { opacity: 1; }
   .feat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(11,22,32,.85), rgba(11,22,32,0) 60%); }
   .feat:hover img { transform: scale(1.05); }
   .feat .t { padding: 24px; display: grid; gap: 6px; }
@@ -217,10 +220,10 @@
         <p>Every project is custom. Most of our clients combine several of these into one outdoor space.</p>
       </div>
       <div class="features">
-        <article class="feat wide"><img src="assets/feat-fire.jpg" alt="" loading="lazy"><div class="t"><h3>Fire &amp; water features</h3><p>Fire troughs along the water, fire bowls, sheer descents and spillover spas.</p></div></article>
-        <article class="feat"><img src="assets/feat-lagoon.jpg" alt="" loading="lazy" style="object-position:20% 60%"><div class="t"><h3>Custom pools &amp; spas</h3><p>Modern geometric to tropical lagoons with grottos, sun shelves and raised spas.</p></div></article>
+        <article class="feat wide"><div class="live" data-img="assets/feat-fire.jpg" data-mask="assets/feat-fire-mask.png"><img src="assets/feat-fire.jpg" alt="" loading="lazy"></div><div class="t"><h3>Fire &amp; water features</h3><p>Fire troughs along the water, fire bowls, sheer descents and spillover spas.</p></div></article>
+        <article class="feat"><div class="live" data-img="assets/feat-lagoon.jpg" data-mask="assets/feat-lagoon-mask.png" style="--pos:20% 60%"><img src="assets/feat-lagoon.jpg" alt="" loading="lazy" style="object-position:20% 60%"></div><div class="t"><h3>Custom pools &amp; spas</h3><p>Modern geometric to tropical lagoons with grottos, sun shelves and raised spas.</p></div></article>
         <article class="feat plain"><h3>The full backyard</h3><ul><li>Summer kitchens &amp; bars</li><li>Travertine &amp; paver decks</li><li>Landscape &amp; pool lighting</li><li>Pergolas, cabanas &amp; shade</li><li>Automation from your phone</li></ul></article>
-        <article class="feat wide"><img src="assets/feat-sheer.jpg" alt="" loading="lazy" style="object-position:50% 55%"><div class="t"><h3>Renovations</h3><p>Turn a tired pool into the centerpiece: new finish, tile, lighting, spa and deck.</p></div></article>
+        <article class="feat wide"><div class="live" data-img="assets/feat-sheer.jpg" data-mask="assets/feat-sheer-mask.png" style="--pos:50% 55%"><img src="assets/feat-sheer.jpg" alt="" loading="lazy" style="object-position:50% 55%"></div><div class="t"><h3>Renovations</h3><p>Turn a tired pool into the centerpiece: new finish, tile, lighting, spa and deck.</p></div></article>
       </div>
     </div>
   </section>
@@ -408,6 +411,104 @@
       }).observe(vid);
     }
   }
+
+
+  // Live feature cards: water ripples + fire flicker using an RG mask (R=water, G=fire)
+  (function initLiveScenes() {
+    if (reduce) return;
+    var hosts = document.querySelectorAll(".feat .live");
+    if (!hosts.length) return;
+    var VS2 = "attribute vec2 a;varying vec2 v;void main(){v=a*.5+.5;v.y=1.-v.y;gl_Position=vec4(a,0.,1.);}";
+    var FS2 = [
+      "precision mediump float;",
+      "varying vec2 v;uniform sampler2D uImg,uMask;uniform float uT;uniform vec2 uScale,uOff;",
+      "void main(){",
+      "  vec2 uv=(v-.5)*uScale+.5+uOff;",
+      "  vec4 m=texture2D(uMask,uv);",
+      "  float water=m.r, fire=m.g;",
+      "  float t=uT;",
+      "  // Water ripple distortion",
+      "  vec2 w=vec2(sin(uv.y*180.+t*1.8+sin(uv.x*42.+t*.9)*2.3)+.6*sin(uv.x*100.-t*1.4),",
+      "              cos(uv.x*125.-t*1.6+sin(uv.y*65.-t)*1.9)+.5*cos(uv.y*220.+t*2.2));",
+      "  vec2 wd=w*water*vec2(.0014,.0020);",
+      "  // Caustic shimmer",
+      "  float c=sin(uv.x*270.+w.x*2.+t*1.3)*sin(uv.y*390.-w.y*2.-t*1.7);",
+      "  float caus=water*smoothstep(.55,1.,c)*.11;",
+      "  // Fire flicker brightness + a touch of upward distortion",
+      "  float fl=sin(t*11.+uv.x*85.)*.5+sin(t*17.+uv.x*55.-uv.y*30.)*.3+sin(t*5.3+uv.y*20.)*.2;",
+      "  vec2 fd=vec2(sin(uv.y*95.-t*15.+uv.x*25.)*.0022,(fl*.5+.5)*.004)*fire;",
+      "  vec3 col=texture2D(uImg,uv+wd+fd).rgb;",
+      "  col*=1.+fire*fl*.35;",
+      "  col+=vec3(.9,1.,1.)*caus;",
+      "  // Warm glow around fire that breathes",
+      "  float glow=fire*(.4+.6*fl)*.18;",
+      "  col+=vec3(1.,.55,.2)*glow;",
+      "  gl_FragColor=vec4(col,1.);",
+      "}"].join("\n");
+    hosts.forEach(function (host) {
+      var canvas = document.createElement("canvas"); host.appendChild(canvas);
+      var gl = canvas.getContext("webgl", { alpha: false, antialias: false, premultipliedAlpha: false });
+      if (!gl) return;
+      var sh = function (type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+      var prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS2)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS2)); gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+      gl.useProgram(prog);
+      var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(prog, "a"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      var U = {}; ["uImg","uMask","uT","uScale","uOff"].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+      var aspect = 1, visible = false, running = false, loaded = 0;
+      // Parse object-position --pos: like "20% 60%" (default 50% 50%)
+      var pos = (host.style.getPropertyValue("--pos") || "50% 50%").trim().split(/\s+/);
+      var posX = parseFloat(pos[0]) / 100 || 0.5, posY = parseFloat(pos[1]) / 100 || 0.5;
+      function tex(unit, url, done) {
+        var im = new Image(); im.crossOrigin = "anonymous";
+        im.onload = function () {
+          var t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          done(im);
+        };
+        im.src = url;
+      }
+      function size() {
+        var dpr = Math.min(window.devicePixelRatio || 1, 1.4);
+        canvas.width = Math.round(canvas.clientWidth * dpr); canvas.height = Math.round(canvas.clientHeight * dpr);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        var ca = canvas.clientWidth / canvas.clientHeight;
+        var sx = ca > aspect ? 1 : ca / aspect, sy = ca > aspect ? aspect / ca : 1;
+        gl.uniform2f(U.uScale, sx, sy);
+        gl.uniform2f(U.uOff, (posX - 0.5) * (1 - sx), (posY - 0.5) * (1 - sy));
+      }
+      function frame(ms) {
+        if (!visible) { running = false; return; }
+        gl.uniform1f(U.uT, ms / 1000);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(frame);
+      }
+      function start() { if (!running && visible) { running = true; requestAnimationFrame(frame); } }
+      function ready(im) {
+        if (im) aspect = im.naturalWidth / im.naturalHeight;
+        if (++loaded < 2) return;
+        gl.uniform1i(U.uImg, 0); gl.uniform1i(U.uMask, 1);
+        size(); canvas.classList.add("on"); start();
+      }
+      function init() {
+        tex(0, host.dataset.img, ready);
+        tex(1, host.dataset.mask, ready);
+      }
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (en) {
+          visible = en[0].isIntersecting;
+          if (visible && !loaded) init();
+          else if (visible) start();
+        }, { rootMargin: "150px" }).observe(host);
+      } else { visible = true; init(); }
+      window.addEventListener("resize", function () { if (canvas.classList.contains("on")) size(); });
+    });
+  })();
 
   // Demo form: no real submission yet (would connect to the renter's CRM)
   document.getElementById("consult-form").addEventListener("submit", function (e) {
