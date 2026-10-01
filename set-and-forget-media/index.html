@@ -133,7 +133,12 @@
   .nav-links { display: flex; gap: 28px; font-weight: 500; font-size: 15px; }
   .nav-links a { text-decoration: none; color: var(--ink); opacity: .8; transition: opacity .2s; }
   .nav-links a:hover { opacity: 1; }
-  @media (max-width: 720px) { .nav-links { display: none; } }
+  @media (max-width: 900px) {
+    .nav .wrap { flex-wrap: wrap; height: auto; min-height: 68px; row-gap: 0; padding-block: 10px 0; }
+    .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 20px; font-size: 14px; padding: 10px 0 12px; scrollbar-width: none; }
+    .nav-links a { white-space: nowrap; }
+    .nav-links::-webkit-scrollbar { display: none; }
+  }
   @media (max-width: 480px) { .nav .btn-sm .num { display: none; } .nav .btn-sm::after { content: "Call"; } .brand { font-size: 16px; } }
 
   /* ---------- Buttons ---------- */
@@ -181,6 +186,7 @@
   .pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--cyan); animation: ping 2.2s ease-out infinite; }
   @keyframes ping { from { transform: scale(.6); opacity: .9; } to { transform: scale(2.2); opacity: 0; } }
   .hero h1 { font-size: clamp(48px, 9vw, 112px); line-height: .95; font-weight: 700; letter-spacing: -0.035em; }
+  .hero .tagline { font: 600 clamp(20px, 2.6vw, 28px)/1.25 var(--display); color: var(--purple-deep); letter-spacing: -0.01em; margin-top: -8px; max-width: 30ch; text-shadow: 0 1px 0 rgba(255,255,255,.9); }
   .hero h1 .amp { color: var(--cyan); font-weight: 400; -webkit-text-stroke: 0; }
   .hero .sub { font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5; color: var(--ink); max-width: 36ch; }
   .hero .sub strong { color: var(--purple); font-weight: 600; }
@@ -194,6 +200,7 @@
   .load-in > *:nth-child(2) { animation-delay: .12s; }
   .load-in > *:nth-child(3) { animation-delay: .24s; }
   .load-in > *:nth-child(4) { animation-delay: .36s; }
+  .load-in > *:nth-child(5) { animation-delay: .48s; }
   @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 
   /* ---------- Sections ---------- */
@@ -371,6 +378,9 @@
   footer p { font-size: 15px; color: var(--ink); }
   footer p strong { color: var(--purple); font-family: var(--display); font-weight: 600; }
   footer small { font: 400 12px/1 var(--mono); color: var(--muted); }
+  .foot-nav { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 15px; width: 100%; order: 3; }
+  .foot-nav a { text-decoration: none; color: var(--ink); opacity: .85; }
+  .foot-nav a:hover { opacity: 1; color: var(--purple); }
 
   /* Reveal (only applied by JS to elements below the fold) */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
@@ -389,9 +399,11 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Set &amp; Forget Media home"><span class="brand-mark" aria-hidden="true"></span>Set &amp; Forget Media</a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#install">What we install</a>
-      <a href="#how">How it works</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="/websites">Websites</a>
+      <a href="/missed-call-text-back">Text-Back</a>
+      <a href="/review-automation">Reviews</a>
+      <a href="/booking-reminders">Booking</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="btn btn-sm" href="tel:+15612557285" aria-label="Call (561) 255-7285"><span class="dot" aria-hidden="true"></span><span class="num">(561) 255-7285</span></a>
@@ -407,6 +419,7 @@
       <div class="hero-inner load-in" id="fg">
         <span class="status"><span class="pulse" aria-hidden="true"></span>System running · 24/7/365</span>
         <h1>Set <span class="amp">&amp;</span> Forget Media</h1>
+        <p class="tagline">Websites &amp; automation for Palm Beach County contractors</p>
         <p class="sub">24/7 AI growth systems for local businesses. <strong>We install it. It runs itself.</strong></p>
         <div class="hero-cta">
           <a class="btn" href="tel:+15612557285"><span class="dot" aria-hidden="true"></span>Call or text (561) 255-7285</a>
@@ -594,6 +607,13 @@
   <div class="wrap">
     <p><strong>Set &amp; Forget Media</strong> · One install. It runs itself.</p>
     <small>© <span id="yr">2026</span> Set &amp; Forget Media</small>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="/websites">Done-for-you websites</a>
+      <a href="/missed-call-text-back">Missed-call text-back</a>
+      <a href="/review-automation">Review automation</a>
+      <a href="/booking-reminders">Booking &amp; reminders</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </footer>
 
