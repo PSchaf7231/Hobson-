@@ -1,6 +1,7 @@
 import type { Lead, SignalTrigger, TextOption } from "./types";
 
 const AGENT_NAME = "Paul";
+export const AGENT_FULL_NAME = "Paul Schafranick";
 
 function firstName(name: string) {
   return name.split(" ")[0];
@@ -43,15 +44,15 @@ export function generateTextOptions(
   return [
     {
       label: "Send available inventory",
-      message: `${first}, it's ${AGENT_NAME}. Since you've been looking at ${place}, I pulled a few comparable homes that are currently available — want me to send them over?`,
+      message: `Hi ${first}, it's ${AGENT_NAME}. Saw you checking out ${place} — want me to send a few similar homes that are available now?`,
     },
     {
       label: "Offer private viewing",
-      message: `Hi ${first} — ${AGENT_NAME} here. I can set up a private showing of ${place} whenever works for you, no pressure. Want me to grab a time?`,
+      message: `Hi ${first}, it's ${AGENT_NAME}. Want to see ${place} in person? Happy to set up a private showing whenever works.`,
     },
     {
       label: "Follow up on layout",
-      message: `${first}, following up — Hobson mentioned you've been focused on ${place}. Happy to walk you through the floor plan and layout details whenever you have a few minutes.`,
+      message: `Hi ${first}, it's ${AGENT_NAME}. Noticed you've been eyeing ${place} — want me to walk you through the layout sometime?`,
     },
   ];
 }

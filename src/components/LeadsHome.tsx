@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Lead, LeadStage } from "@/lib/types";
 import { speak } from "@/lib/voice";
 import LeadCard from "./LeadCard";
@@ -9,6 +9,7 @@ import BottomNav from "./BottomNav";
 import DemoControls from "./DemoControls";
 import GlobalHeader, { type FilterKey } from "./GlobalHeader";
 import AddLeadModal from "./AddLeadModal";
+import { BackIcon } from "./Icons";
 
 interface Stats {
   hotToday: number;
@@ -16,18 +17,21 @@ interface Stats {
   newThisWeek: number;
 }
 
+interface LeadsHomeProps {
+  onBack?: () => void;
+}
+
 const POLL_MS = 4000;
 const DAY_MS = 24 * 60 * 60 * 1000;
 const FOLLOW_UP_STAGES: LeadStage[] = ["Inquired on", "Interested in", "Shown"];
 
-export default function LeadsHome() {
+export default function LeadsHome({ onBack }: LeadsHomeProps) {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [stats, setStats] = useState<Stats>({ hotToday: 0, activeLeads: 0, newThisWeek: 0 });
   const [callTarget, setCallTarget] = useState<Lead | null>(null);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<FilterKey>("all");
   const [addLeadOpen, setAddLeadOpen] = useState(false);
-  const lastAlertCheck = useRef<number>(Date.now());
 
   const refresh = useCallback(async () => {
     const res = await fetch("/api/leads");
@@ -36,24 +40,11 @@ export default function LeadsHome() {
     setStats(data.stats);
   }, []);
 
-  const checkAlerts = useCallback(async () => {
-    const since = lastAlertCheck.current;
-    lastAlertCheck.current = Date.now();
-    const res = await fetch(`/api/alerts?since=${since}`);
-    const data = await res.json();
-    if (data.alerts?.length) {
-      speak(data.alerts[0].spokenLine);
-    }
-  }, []);
-
   useEffect(() => {
     refresh();
-    const interval = setInterval(() => {
-      refresh();
-      checkAlerts();
-    }, POLL_MS);
+    const interval = setInterval(refresh, POLL_MS);
     return () => clearInterval(interval);
-  }, [refresh, checkAlerts]);
+  }, [refresh]);
 
   async function handleStageChange(id: string, stage: LeadStage) {
     setLeads((cur) => cur.map((l) => (l.id === id ? { ...l, stage } : l)));
@@ -122,6 +113,16 @@ export default function LeadsHome() {
       className="min-h-dvh w-full flex flex-col relative"
       style={{ background: "radial-gradient(120% 90% at 50% 0%, #1a3050 0%, #0B1D33 55%)" }}
     >
+      {onBack && (
+        <button
+          onClick={onBack}
+          aria-label="Back to Hobson"
+          className="fixed top-[calc(env(safe-area-inset-top)+10px)] left-4 z-50 w-8 h-8 rounded-full bg-navy-mid/90 border border-white/10 flex items-center justify-center text-gold"
+        >
+          <BackIcon className="w-4 h-4" />
+        </button>
+      )}
+
       <GlobalHeader
         search={search}
         onSearchChange={setSearch}
