@@ -12,6 +12,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=ROOT, **kwargs)
 
+    def translate_path(self, path):
+        # Mirror Vercel's cleanUrls: /websites serves websites.html
+        fs_path = super().translate_path(path)
+        if not os.path.exists(fs_path) and os.path.exists(fs_path + ".html"):
+            return fs_path + ".html"
+        return fs_path
+
 
 class Server(socketserver.ThreadingTCPServer):
     allow_reuse_address = True
