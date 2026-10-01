@@ -331,13 +331,13 @@
       "  vec2 d=w*m*depth*vec2(.0011,.0016)*vec2(1./uCrop.y,1.);",
       "  float c=sin(fu.x*260.+w.x*2.+t*1.2)*sin(fu.y*380.-w.y*2.-t*1.6);",
       "  float caus=m*smoothstep(.55,1.,c)*.10;",
-      "  float fire=box(fu,vec4(.235,.455,.365,.56),.02);",
+      "  float fire=box(fu,vec4(.215,.485,.420,.580),.015);",
       "  float fl=sin(t*6.5+fu.x*90.)*.5+sin(t*10.+fu.x*40.)*.3+sin(t*3.1)*.2;",
       "  vec2 fd=vec2(sin(fu.y*80.-t*8.+fu.x*30.)*.0018,(fl*.5+.5)*.004*smoothstep(.56,.46,fu.y))*fire*vec2(1./uCrop.y,1.);",
       "  vec3 day=texture2D(uDay,uv+d).rgb;",
       "  vec3 nig=texture2D(uNight,uv+d+fd).rgb;",
       "  nig*=1.+fire*fl*.16;",
-      "  float glow=box(fu,vec4(.20,.42,.40,.60),.08)*(.5+.5*fl)*.06;",   // warm light spill that breathes with the flame
+      "  float glow=box(fu,vec4(.19,.49,.44,.63),.04)*(.5+.5*fl)*.04;",   // warm spill, kept inside the fire trough area
       "  nig+=vec3(1.,.55,.2)*glow;",
       "  day+=vec3(.9,1.,1.)*caus;nig+=vec3(.5,1.,.95)*caus*.8;",
       "  gl_FragColor=vec4(mix(day,nig,uMix),1.);",
