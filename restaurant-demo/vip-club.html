@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Lume List · VIP Text Club · Trattoria Lume</title>
+<meta name="description" content="The Lume list texts you first when a table opens, when a wine dinner is announced, when a new live music night is added. Birthday month treat. One text a week max.">
+<link rel="canonical" href="https://trattorialume.com/vip-club.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><b>TRATTORIA LUME</b><span>Modern Italian · Delray Beach</span></a>
+    <nav class="links"><a href="menu.html">Menu</a><a href="private-events.html">Private Events</a><a href="late-night.html">After Sunset</a><a href="vip-club.html">VIP Club</a></nav>
+    <a class="btn candle" href="index.html#reserve"><span class="long">Reserve a </span>Table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="page-hero" style="background-image: linear-gradient(to bottom, rgba(14,10,6,.6), rgba(14,10,6,.92)), url('assets/hero-dining.jpg');">
+    <div class="wrap vip-stack" style="text-align: center; margin-inline: auto;">
+      <span class="kicker" style="justify-self: center;">The Lume list</span>
+      <h1>First to know <em>when a table opens</em>.</h1>
+      <p class="lede" style="margin-inline: auto; text-align: center;">Private wine dinners sell out in an afternoon. Chef's table seats release in groups of eight. New live music nights get announced on Monday. The Lume list hears first.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="vip-benefits">
+        <div class="vb">
+          <span class="n">01</span>
+          <h3>First-table alerts</h3>
+          <p>When a Friday night cancellation opens up, the list gets a text at noon. Grab it before OpenTable does.</p>
+        </div>
+        <div class="vb">
+          <span class="n">02</span>
+          <h3>Wine &amp; chef's table</h3>
+          <p>Private wine dinners and chef's counter seats release to the list 24 hours before anyone else sees them.</p>
+        </div>
+        <div class="vb">
+          <span class="n">03</span>
+          <h3>Birthday month treat</h3>
+          <p>A text in your birthday month with a dessert and a glass on us. Bring whoever you'd want on your birthday.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="background: var(--bg-2); border-block: 1px solid var(--rule);">
+    <div class="wrap" style="max-width: 640px; margin-inline: auto;">
+      <div style="display: grid; gap: 14px; margin-bottom: 36px; text-align: center;">
+        <span class="kicker" style="justify-self: center;">Join</span>
+        <h2 style="font-size: clamp(32px, 4.4vw, 50px); line-height: 1.03; font-weight: 400;">Takes <em style="font-style: italic; color: var(--candle-lt);">twenty seconds</em>.</h2>
+        <p class="lede" style="text-align: center; margin-inline: auto;">We ask for the basics. One text a week at most. Reply STOP any time, no hard feelings.</p>
+      </div>
+      <form class="inquiry" id="vip-form" novalidate>
+        <label>Name<input id="v-name" name="name" autocomplete="name" required></label>
+        <label>Mobile<input id="v-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 555-5555"></label>
+        <div class="row">
+          <label>Birthday month
+            <select id="v-month" name="month">
+              <option value="">—</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option>
+            </select>
+          </label>
+          <label>What you love most
+            <select id="v-love" name="love">
+              <option value="">—</option>
+              <option>Wine dinners</option>
+              <option>Live music nights</option>
+              <option>Chef's table</option>
+              <option>Private events</option>
+              <option>Last-minute Fridays</option>
+              <option>All of it</option>
+            </select>
+          </label>
+        </div>
+        <button class="btn candle" type="submit" style="margin-top: 4px;">Join the Lume list</button>
+        <p class="note" id="v-note" role="status"></p>
+        <p class="fine">By joining you agree to receive occasional texts from Trattoria Lume. Max one message a week. Reply STOP to end at any time. Msg &amp; data rates may apply. We never share your number.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  <div class="fl"><b>TRATTORIA LUME</b><span>Modern Italian · Delray Beach</span></div>
+  <div class="attrib">
+    <span>© <span class="yr">2026</span> Trattoria Lume · 502 E Atlantic Ave, Delray Beach, FL · <a href="tel:+15612557285">(561) 255-7285</a></span>
+    <span>Concept &amp; build by <a href="https://setandforgetmedia.com">Set &amp; Forget Media</a> · Paul Schafranick · <a href="tel:+15612557285">(561) 255-7285</a></span>
+  </div>
+</div></footer>
+
+<div class="callbar"><a class="btn glass" href="tel:+15612557285">Call</a><a class="btn candle" href="#vip-form">Join</a></div>
+<script>
+document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60),{passive:true});
+var f=document.getElementById('vip-form');
+f.addEventListener('submit',function(e){e.preventDefault();var n=document.getElementById('v-note');
+if(!f.name.value.trim()||!f.phone.value.trim()){n.textContent='Add your name and mobile.';return;}
+n.textContent="You're in, "+f.name.value.trim().split(' ')[0]+". A welcome text comes within the hour."; f.reset();});
+</script>
+</body>
+</html>

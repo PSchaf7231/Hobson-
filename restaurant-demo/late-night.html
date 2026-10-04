@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>After Sunset · Live Music &amp; Fire Terrace · Trattoria Lume</title>
+<meta name="description" content="Live jazz Thursday through Saturday on the fire-lit terrace. Late-night small plates until 11:30. Save a table at Trattoria Lume, 502 E Atlantic Ave, Delray Beach.">
+<link rel="canonical" href="https://trattorialume.com/late-night.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="pages.css">
+<style>
+  .late-hero { position: relative; min-height: 90vh; overflow: hidden; display: grid; align-content: end; color: var(--ink); padding-block: 180px clamp(60px, 10vh, 120px); }
+  .late-hero picture, .late-hero picture img { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -3; }
+  .late-hero picture img { object-fit: cover; }
+  .late-hero canvas.fire { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: 0; transition: opacity .6s; }
+  .late-hero canvas.fire.on { opacity: 1; }
+  .late-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(14,10,6,.9) 0%, rgba(14,10,6,.12) 55%, rgba(14,10,6,.35) 100%); }
+  .late-hero .wrap { position: relative; z-index: 2; max-width: 900px; display: grid; gap: 20px; }
+  .late-hero h1 { font-size: clamp(44px, 7.2vw, 100px); line-height: 1; max-width: 14ch; }
+  .late-hero h1 em { font-style: italic; color: var(--candle-lt); font-weight: 500; }
+  .late-hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><b>TRATTORIA LUME</b><span>Modern Italian · Delray Beach</span></a>
+    <nav class="links"><a href="menu.html">Menu</a><a href="private-events.html">Private Events</a><a href="late-night.html">After Sunset</a><a href="vip-club.html">VIP Club</a></nav>
+    <a class="btn candle" href="index.html#reserve"><span class="long">Reserve a </span>Table</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="late-hero">
+    <picture>
+      <source media="(max-width: 700px) and (orientation: portrait)" srcset="assets/terrace-fire-m.jpg">
+      <img src="assets/terrace-fire.jpg" alt="The Trattoria Lume terrace at dusk — a long fire feature burning, string lights overhead, the Intracoastal and yacht lights in the background">
+    </picture>
+    <canvas class="fire" id="fire-canvas" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <span class="kicker">After sunset</span>
+      <h1>Fire on the water. <em>Jazz</em> at seven.</h1>
+      <p class="lede" style="font-size: 20px; color: rgba(245,237,220,.9);">The terrace stays lit until midnight. Live music Thursday through Saturday. Full menu until 10, late-night plates until 11:30. The fire burns until the last glass is poured.</p>
+      <div class="actions">
+        <a class="btn candle" href="index.html#reserve">Save me a seat</a>
+        <a class="btn glass" href="tel:+15612557285">Call (561) 255-7285</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div style="display: grid; gap: 16px; max-width: 760px; margin-bottom: 60px;">
+        <span class="kicker">This week on the terrace</span>
+        <h2 style="font-size: clamp(32px, 4vw, 50px); font-weight: 400;">Three <em style="font-style: italic; color: var(--candle-lt);">live nights</em>, straight through the weekend.</h2>
+      </div>
+      <div class="lineup">
+        <div class="night">
+          <span class="day">Thursday</span>
+          <h3>Marco Lazzari <em>Trio</em></h3>
+          <p>Standards, bossa, a little Monk. Three sets through the night.</p>
+          <span class="time">7:00pm · 8:30pm · 10:00pm</span>
+        </div>
+        <div class="night">
+          <span class="day">Friday</span>
+          <h3>The Delray <em>Sessions</em></h3>
+          <p>Rotating local jazz quartet. Vocal first set, instrumental late.</p>
+          <span class="time">7:00pm · 8:30pm · 10:00pm</span>
+        </div>
+        <div class="night">
+          <span class="day">Saturday</span>
+          <h3>Lume <em>Resident Trio</em></h3>
+          <p>Our house band. Piano, upright, drums. The crowd stays late.</p>
+          <span class="time">7:00pm · 8:30pm · 10:00pm · 11:00pm</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="late-menu block">
+    <div class="wrap">
+      <div style="display: grid; gap: 16px; max-width: 760px;">
+        <span class="kicker">Late-night menu</span>
+        <h2>Something small, <em>something strong</em>, until 11:30.</h2>
+        <p class="lede">For when the night runs longer than the kitchen. Dessert, cheese, cocktails, and plates small enough to share.</p>
+      </div>
+      <div class="items">
+        <div class="mi"><div class="mi-row"><h3>Tagliere Toscano</h3><span class="price">32</span></div><p>Prosciutto, pecorino, honeycomb, grissini.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Burrata &amp; Tomato</h3><span class="price">22</span></div><p>Heirloom tomatoes, basil oil, grilled bread.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Polpette al Sugo</h3><span class="price">18</span></div><p>Four meatballs in tomato gravy, grilled bread.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Olive Fritte</h3><span class="price">12</span></div><p>Castelvetrano olives fried crisp, lemon zest.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Tiramisu della Casa</h3><span class="price">14</span></div><p>Made daily. Espresso, mascarpone, cocoa.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Affogato al Caffè</h3><span class="price">10</span></div><p>Vanilla gelato, double espresso.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Negroni di Lume</h3><span class="price">16</span></div><p>Our bitter twist with aged bourbon and Carpano Antica.</p></div>
+        <div class="mi"><div class="mi-row"><h3>Espresso Martini</h3><span class="price">16</span></div><p>Vodka, cold brew, Mr. Black, a float of cream.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  <div class="fl"><b>TRATTORIA LUME</b><span>Modern Italian · Delray Beach</span></div>
+  <div class="attrib">
+    <span>© <span class="yr">2026</span> Trattoria Lume · 502 E Atlantic Ave, Delray Beach, FL · <a href="tel:+15612557285">(561) 255-7285</a></span>
+    <span>Concept &amp; build by <a href="https://setandforgetmedia.com">Set &amp; Forget Media</a> · Paul Schafranick · <a href="tel:+15612557285">(561) 255-7285</a></span>
+  </div>
+</div></footer>
+
+<div class="callbar"><a class="btn glass" href="tel:+15612557285">Call</a><a class="btn candle" href="index.html#reserve">Reserve</a></div>
+<script>
+document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60),{passive:true});
+
+// WebGL fire animation on the terrace hero
+(function(){
+  var fc=document.getElementById('fire-canvas');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var gl=!reduce&&fc.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:false});
+  if(!gl)return;
+  var VS="attribute vec2 a;varying vec2 v;void main(){v=a*.5+.5;v.y=1.-v.y;gl_Position=vec4(a,0.,1.);}";
+  var FS=["precision mediump float;",
+    "varying vec2 v;uniform sampler2D uImg,uMask;uniform float uT;uniform vec2 uScale,uOff;",
+    "void main(){",
+    "  vec2 uv=(v-.5)*uScale+.5+uOff;",
+    "  float m=texture2D(uMask,uv).g;",
+    "  float t=uT*0.9;",
+    "  float fl=sin(t*9.+uv.x*95.)*.5+sin(t*14.-uv.x*55.+uv.y*25.)*.3+sin(t*4.5+uv.y*20.)*.2;",
+    "  vec2 fd=vec2(sin(uv.y*90.-t*8.+uv.x*25.)*.0022,(fl*.5+.5)*.004)*m;",
+    "  vec3 col=texture2D(uImg,uv+fd).rgb;",
+    "  col*=1.+m*fl*.26;",
+    "  float glow=m*(.4+.6*fl)*.10;",
+    "  col+=vec3(1.,.55,.2)*glow;",
+    "  gl_FragColor=vec4(col,1.);",
+    "}"].join('\n');
+  function sh(t,s){var x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);return x;}
+  var prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))return;
+  gl.useProgram(prog);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(prog,'a');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var U={};['uImg','uMask','uT','uScale','uOff'].forEach(function(n){U[n]=gl.getUniformLocation(prog,n);});
+  var aspect=1659/948,visible=false,running=false,loaded=0;
+  function tex(unit,url,done){var im=new Image();im.onload=function(){var t=gl.createTexture();gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,im);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    done();};im.src=url;}
+  function size(){var dpr=Math.min(devicePixelRatio||1,1.4);fc.width=Math.round(fc.clientWidth*dpr);fc.height=Math.round(fc.clientHeight*dpr);
+    gl.viewport(0,0,fc.width,fc.height);var ca=fc.clientWidth/fc.clientHeight;
+    var sx=ca>aspect?1:ca/aspect,sy=ca>aspect?aspect/ca:1;gl.uniform2f(U.uScale,sx,sy);gl.uniform2f(U.uOff,0,0);}
+  function frame(ms){if(!visible){running=false;return;}gl.uniform1f(U.uT,ms/1000);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(frame);}
+  function start(){if(!running&&visible){running=true;requestAnimationFrame(frame);}}
+  function ready(){if(++loaded<2)return;gl.uniform1i(U.uImg,0);gl.uniform1i(U.uMask,1);size();fc.classList.add('on');start();}
+  tex(0,'assets/terrace-fire.jpg',ready);tex(1,'assets/terrace-fire-mask.png',ready);
+  var hero=document.querySelector('.late-hero');
+  if('IntersectionObserver' in window){new IntersectionObserver(function(en){visible=en[0].isIntersecting;start();}).observe(hero);} else {visible=true;}
+  addEventListener('resize',function(){if(fc.classList.contains('on'))size();});
+})();
+</script>
+</body>
+</html>
