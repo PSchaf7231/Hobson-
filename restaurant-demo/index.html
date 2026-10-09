@@ -72,12 +72,29 @@
   @media (max-width: 420px) { .nav .btn .long { display: none; } }
 
   /* Hero */
-  .hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; color: var(--ink); }
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; color: var(--ink); background: url('assets/hero-dining.jpg') center 55% / cover no-repeat #0E0A06; }
   .hero picture, .hero picture img, .hero video { position: absolute; inset: 0; width: 100%; height: 100%; }
   .hero picture img, .hero video { object-fit: cover; object-position: center 55%; }
+  .hero video { transition: opacity 1.4s ease; }
+  .hero.video-ended video { opacity: 0; pointer-events: none; }
+  .hero.video-ended .sound-toggle { opacity: 0; pointer-events: none; transition: opacity .5s ease; }
   .hero .sound-toggle { position: absolute; z-index: 3; top: clamp(72px, 10vh, 110px); right: 20px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; background: rgba(14,10,6,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--ink); font: 500 11.5px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; border: 1px solid rgba(245,237,220,.22); cursor: pointer; transition: background .2s ease; }
   .hero .sound-toggle:hover { background: rgba(14,10,6,.72); }
   .hero .sound-toggle svg { width: 14px; height: 14px; fill: currentColor; }
+  @media (max-width: 480px) {
+    .hero .ribbon { gap: 10px 14px; font-size: 12px; }
+    .hero .ribbon span { white-space: nowrap; }
+    .hero .sound-toggle { top: 68px; right: 12px; padding: 7px 11px; font-size: 10.5px; letter-spacing: .14em; }
+    .hero .sound-toggle span { display: none; }
+    .nav .wrap { height: 64px; gap: 10px; }
+    .logo b { font-size: 19px; letter-spacing: .11em; }
+    .logo span { font-size: 8.5px; letter-spacing: .22em; margin-top: 5px; }
+    .nav .btn { padding: 10px 14px; font-size: 13px; }
+  }
+  @media (max-width: 360px) {
+    .logo b { font-size: 17px; letter-spacing: .08em; }
+    .logo span { font-size: 8px; letter-spacing: .18em; }
+  }
   .hero::after { content: ""; position: absolute; inset: 0; background:
       radial-gradient(ellipse at 50% 70%, rgba(14,10,6,0) 0%, rgba(14,10,6,.55) 65%, rgba(14,10,6,.92) 100%),
       linear-gradient(to top, rgba(14,10,6,.75) 0%, rgba(14,10,6,0) 35%),
@@ -285,7 +302,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-dining.jpg" aria-label="Trattoria Lume dining room, terrace fire, and signature plates">
+    <video id="hero-video" autoplay muted playsinline preload="auto" poster="assets/hero-dining.jpg" aria-label="Trattoria Lume dining room, terrace fire, and signature plates">
       <source src="assets/trattoria-lume-hero-28s-web.mp4" type="video/mp4">
       <img src="assets/hero-dining.jpg" alt="The Trattoria Lume dining room at night, warm candle gold light, olive trees, and a lit terrace through tall windows">
     </video>
@@ -666,9 +683,10 @@
 
 <script>
 (function(){
+  var hero = document.querySelector('.hero');
   var v = document.getElementById('hero-video');
   var btn = document.getElementById('sound-toggle');
-  if (!v || !btn) return;
+  if (!v || !btn || !hero) return;
   var label = btn.querySelector('span');
   function setLabel(muted){
     label.textContent = muted ? 'Sound off' : 'Sound on';
@@ -679,6 +697,7 @@
     if (!v.muted) { v.play().catch(function(){}); }
     setLabel(v.muted);
   });
+  v.addEventListener('ended', function(){ hero.classList.add('video-ended'); });
   setLabel(v.muted);
 })();
 </script>
