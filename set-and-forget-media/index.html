@@ -382,6 +382,24 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
   }
+
+  /* Featured AI receptionist card */
+  .card.feature { grid-column: 1 / -1; grid-template-columns: auto 1fr; column-gap: 28px; align-items: center; background: linear-gradient(135deg, #fff 0%, #F5F0FF 100%); }
+  .card.feature .card-top { grid-column: 1 / -1; }
+  .card.feature h3 { font-size: clamp(24px, 3vw, 30px); }
+  @media (max-width: 600px) { .card.feature { grid-template-columns: 1fr; } }
+  /* Demo showcase */
+  .demos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  @media (max-width: 760px) { .demos { grid-template-columns: 1fr; } }
+  .demo { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 1px 2px rgba(76,29,149,.04), 0 12px 32px -20px rgba(76,29,149,.18); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease, border-color .3s; }
+  .demo:hover { transform: translateY(-8px); border-color: rgba(0,210,255,.5); box-shadow: 0 22px 40px -18px rgba(76,29,149,.30); }
+  .demo img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .demo-body { padding: 24px 26px 28px; display: grid; gap: 8px; }
+  .demo-body .trigger { color: var(--purple); }
+  .demo-body h3 { font-size: 22px; font-weight: 600; }
+  .demo-body p { color: var(--ink); font-size: 16px; line-height: 1.55; }
+  .demo-link { font-weight: 600; color: var(--purple); margin-top: 6px; }
+  .demo-note { margin-top: 26px; color: var(--muted); font-size: 15px; }
 </style>
 </head>
 <body>
@@ -391,6 +409,7 @@
     <a class="brand" href="#top" aria-label="Set &amp; Forget Media home"><span class="brand-mark" aria-hidden="true"></span>Set &amp; Forget Media</a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#install">What we install</a>
+      <a href="#demos">See it live</a>
       <a href="#how">How it works</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -429,6 +448,14 @@
       </div>
 
       <div class="cards">
+        <article class="card feature reveal-target">
+          <div class="card-top">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></span>
+            <span class="trigger">On: every call · 24/7</span>
+          </div>
+          <h3>AI Receptionist</h3>
+          <p>A friendly voice answers every call, day or night. It answers questions, books the appointment, and texts you the details, so no customer ever hits voicemail.</p>
+        </article>
         <article class="card reveal-target">
           <div class="card-top">
             <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/><path d="M15 3l6 6M21 3l-6 6"/></svg></span>
@@ -535,6 +562,38 @@
           </ul>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- Demos -->
+  <section class="block" id="demos">
+    <div class="wrap">
+      <div class="section-head reveal-target">
+        <span class="eyebrow">See it live</span>
+        <h2>Sites we've built.</h2>
+        <p>Real examples of the websites we install, each wired for calls, texts, and bookings. Tap one and look around.</p>
+      </div>
+      <div class="demos">
+        <a class="demo reveal-target" href="https://trattorialume.com" target="_blank" rel="noopener">
+          <img src="/assets/demo-trattoria.jpg" alt="Trattoria Lume dining room" loading="lazy" width="900" height="514">
+          <div class="demo-body">
+            <span class="trigger">Restaurant · Delray Beach</span>
+            <h3>Trattoria Lume</h3>
+            <p>Modern Italian with menus, private dining, and reservations front and center.</p>
+            <span class="demo-link">Visit the site →</span>
+          </div>
+        </a>
+        <a class="demo reveal-target" href="https://solacepools.setandforgetmedia.com" target="_blank" rel="noopener">
+          <img src="/assets/demo-solace.jpg" alt="Solace Pools luxury backyard pool" loading="lazy" width="900" height="502">
+          <div class="demo-body">
+            <span class="trigger">Pool builder · South Florida</span>
+            <h3>Solace Pools &amp; Outdoor Living</h3>
+            <p>A luxury pool builder site built to turn browsers into design consultations.</p>
+            <span class="demo-link">Visit the site →</span>
+          </div>
+        </a>
+      </div>
+      <p class="demo-note">Concept sites for demonstration. Yours is built around your business.</p>
     </div>
   </section>
 
