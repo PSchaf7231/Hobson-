@@ -12,23 +12,55 @@
     />
     <link rel="stylesheet" href="hark.css" />
     <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      .x-trust {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .x-trust li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: var(--tap);
+        padding: 12px 16px;
+        border-radius: var(--r-m);
+        background: var(--fill-tertiary);
+        font: var(--type-label);
+        color: var(--text-primary);
+      }
+      .x-trust li::before {
+        content: "";
+        flex: none;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--fill-system-green);
+      }
+      @media (max-width: 760px) { .x-trust { grid-template-columns: minmax(0, 1fr); } }
+      .x-about { align-items: center; }
+      .x-about .links { margin-top: 20px; }
+    </style>
   </head>
   <body>
     <div class="page" id="top">
       <header class="nav glass" data-auto></header>
       <main class="main">
         <section class="hero">
-          <img class="hero__img" src="landlord-hero.jpg" alt="A Palm Beach County villa rental home framed by palms" />
+          <img class="hero__img" src="owners-hero.jpg" alt="A Palm Beach villa and its pool at golden hour" />
           <div class="hero__copy">
-            <p class="hero__eyebrow">For Palm Beach County owners and landlords</p>
+            <p class="hero__eyebrow">Palm Beach Rental Pros · For Owners</p>
             <h1>Get your Palm Beach rental leased faster</h1>
             <p class="hero__sub">Hand Paul your vacant rental. He markets it everywhere renters search, screens applicants, and gets it leased.</p>
-            <p class="hero__meta">Condos · Villas · Townhomes · Single-family homes</p>
+            <p class="hero__meta">For Palm Beach County owners and landlords · Condos · Villas · Townhomes · Single-family homes</p>
           </div>
           <aside class="callout" aria-label="Next step">
             <p class="callout__head"><span class="hark-mark" data-size="16"></span> Next step</p>
             <p class="callout__lead">
-              <strong>Get a free rent estimate for your property.</strong> Call or text Paul at 561-255-7285, or email paul@palmbeachrentalpros.com.
+              <strong>Get a free rent estimate.</strong> Call or text Paul at 561-255-7285, or email paul@palmbeachrentalpros.com.
             </p>
             <p class="fineprint">Send the address, beds/baths, and furnished or unfurnished.</p>
             <div class="links">
@@ -38,6 +70,12 @@
           </aside>
         </section>
 
+        <ul class="x-trust" aria-label="What every owner gets">
+          <li>Listed within 24 hours of your OK</li>
+          <li>Every applicant screened</li>
+          <li>One local agent, start to finish</li>
+        </ul>
+
         <section class="section" id="why" data-nav="Why Paul">
           <div class="head">
             <p class="head__eyebrow">Why owners call Paul</p>
@@ -45,12 +83,12 @@
           </div>
           <div class="cards">
             <div>
-              <h3>Listed the same day</h3>
-              <p>Your listing goes out the same day on multiple rental sites, with real photos and a full description.</p>
+              <h3>Listed fast</h3>
+              <p>Live within 24 hours on multiple rental sites, with real photos and a full description.</p>
             </div>
             <div>
               <h3>Owners find Paul first</h3>
-              <p>Local owners have found Paul at the top of Google's AI answers when searching for a rental agent in their community.</p>
+              <p>Local owners searching for a rental agent have found Paul at the top of Google's AI answers.</p>
             </div>
             <div>
               <h3>Renters reach a real person</h3>
@@ -99,14 +137,14 @@
               <div class="step__intro"><p class="step__num">01</p><p class="step__eyebrow">Free</p></div>
               <div>
                 <h3>Free rent estimate</h3>
-                <p>Paul pulls recent leased and active comps in your community and suggests a list price and a floor.</p>
+                <p>Recent leased and active comps from your community, with a suggested list price and floor.</p>
               </div>
             </article>
             <article class="step">
               <div class="step__intro"><p class="step__num">02</p><p class="step__eyebrow">Within 24 hours</p></div>
               <div>
                 <h3>Photos and listing</h3>
-                <p>Professional-quality photos and a description written to get calls, posted within 24 hours of your OK.</p>
+                <p>Professional-quality photos and a description that gets calls, posted within 24 hours of your OK.</p>
               </div>
             </article>
             <article class="step">
@@ -193,7 +231,7 @@
             </div>
             <div>
               <h3>Furnished, seasonal, or annual?</h3>
-              <p>All three. Paul will tell you which rents faster in your community and what it's worth.</p>
+              <p>All three. Paul will tell you which rents faster in your community, and for how much.</p>
             </div>
             <div>
               <h3>Pets?</h3>
@@ -211,16 +249,27 @@
             <p class="head__eyebrow">About Paul</p>
             <h2>Paul Schafranick, Palm Beach County rental specialist.</h2>
           </div>
-          <div class="prose">
-            <p>Paul is a licensed Florida real estate professional serving Palm Beach County, specializing in rentals from Delray Beach and Boca Raton to West Palm Beach.</p>
-            <p>Phone: <a class="link" href="tel:5612557285">561-255-7285</a></p>
+          <div class="pair x-about">
+            <figure class="band is-portrait">
+              <img src="paul-owner.jpg" alt="Portrait of Paul Schafranick" />
+            </figure>
+            <div>
+              <div class="prose">
+                <p>A licensed Florida real estate professional specializing in Palm Beach County rentals, from Delray Beach and Boca Raton to West Palm Beach.</p>
+                <p>Phone: <a class="link" href="tel:5612557285">561-255-7285</a></p>
+              </div>
+              <div class="links">
+                <a class="btn" href="tel:5612557285">Call Paul</a>
+                <a class="btn" href="sms:5612557285">Text Paul</a>
+              </div>
+            </div>
           </div>
         </section>
 
         <section class="section" id="contact" data-nav="Contact">
           <div class="head">
-            <p class="head__eyebrow">Get a free rent estimate for your property</p>
-            <h2>Have a vacancy? Text Paul the address for a free rent estimate.</h2>
+            <p class="head__eyebrow">Free rent estimate</p>
+            <h2>Have a vacancy? Text Paul the address.</h2>
             <p class="head__sub">Include beds/baths, and furnished or unfurnished.</p>
           </div>
           <div class="links">
