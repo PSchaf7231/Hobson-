@@ -258,13 +258,14 @@
 .toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(160px);background:var(--ink);color:var(--bg);padding:13px 18px;border-radius:12px;font-weight:600;transition:transform .35s;z-index:70;max-width:90vw;text-align:center}.toast.on{transform:translateX(-50%)}
 .sfm{background:linear-gradient(135deg,#1c1240,#0b3240);border-radius:24px;padding:34px;border:1px solid rgba(255,255,255,.08)}
 .sfm h2{font-size:clamp(30px,4vw,44px)}.sfm p{color:#d9d4f0;margin:12px 0 20px;max-width:60ch}
-@media(max-width:860px){.order .wrap{grid-template-columns:1fr}.cmp{grid-template-columns:1fr}}
+body{padding-bottom:64px}
+@media(max-width:860px){.links{display:none}.demobar{font-size:12px;padding-top:7px}.demobar a{padding:5px 11px}.order .wrap{grid-template-columns:1fr}.cmp{grid-template-columns:1fr}}
 </style></head>
 <body>
 <header class="nav" id="nav"><div class="wrap">
 <a class="logo" href="#top"><b>ZIREE THAI &AMP; SUSHI</b><span>Thai + Japanese / Sushi · Delray Beach</span></a>
 <nav class="links" aria-label="Primary"><a href="#menu">Menu</a><a href="#order">Order Direct</a><a href="#club">Text Club</a><a href="#visit">Visit</a></nav>
-<a class="btn candle" href="#order">Order<span class="long">&nbsp;Online</span></a>
+<a class="btn candle" href="#order">Order Online</a>
 </div></header>
 <main id="top">
 <section class="hero"><picture><img src="p1.jpg" alt="Ziree Thai &amp; Sushi" referrerpolicy="no-referrer" onerror="this.remove()"></picture>
@@ -286,12 +287,12 @@
 <div class="shot reveal"><img src="p2.jpg" alt="Food at Ziree Thai &amp; Sushi" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></div>
 <div class="dishes">
 <div class="head reveal" style="margin-bottom:10px"><span class="kicker">From our kitchen</span><h2>The dishes <em>regulars</em> order first.</h2></div>
-<div class="dish reveal"><span class="n">01</span><div><h3>Pad Thai</h3><p>DoorDash price; most-liked item</p><div class="price">19.95</div><button class="btn add" onclick="add(0,'Pad Thai',19.95)">Add to order</button></div></div>
-<div class="dish reveal"><span class="n">02</span><div><h3>Panang Curry</h3><p>DoorDash price</p><div class="price">19.95</div><button class="btn add" onclick="add(1,'Panang Curry',19.95)">Add to order</button></div></div>
-<div class="dish reveal"><span class="n">03</span><div><h3>Red Curry</h3><p>DoorDash price</p><div class="price">19.95</div><button class="btn add" onclick="add(2,'Red Curry',19.95)">Add to order</button></div></div>
-<div class="dish reveal"><span class="n">04</span><div><h3>Pad Woon Sen</h3><p>DoorDash price</p><div class="price">18.95</div><button class="btn add" onclick="add(3,'Pad Woon Sen',18.95)">Add to order</button></div></div>
-<div class="dish reveal"><span class="n">05</span><div><h3>Fried Rice</h3><p>DoorDash price</p><div class="price">17.95</div><button class="btn add" onclick="add(4,'Fried Rice',17.95)">Add to order</button></div></div>
-<div class="dish reveal"><span class="n">06</span><div><h3>Ziree Roll</h3><p>Shrimp tempura, tuna, cream cheese, avocado in soy paper, topped with crab, tempura flakes, spicy mayo, eel sauce (FoodBoss listing)</p><div class="price">15.95</div><button class="btn add" onclick="add(5,'Ziree Roll',15.95)">Add to order</button></div></div>
+<div class="dish reveal"><span class="n">01</span><div><h3>Pad Thai</h3><p>DoorDash price; most-liked item</p><div class="price">$19.95</div><button class="btn add" onclick="add(0,'Pad Thai',19.95)">Add to order</button></div></div>
+<div class="dish reveal"><span class="n">02</span><div><h3>Panang Curry</h3><p>DoorDash price</p><div class="price">$19.95</div><button class="btn add" onclick="add(1,'Panang Curry',19.95)">Add to order</button></div></div>
+<div class="dish reveal"><span class="n">03</span><div><h3>Red Curry</h3><p>DoorDash price</p><div class="price">$19.95</div><button class="btn add" onclick="add(2,'Red Curry',19.95)">Add to order</button></div></div>
+<div class="dish reveal"><span class="n">04</span><div><h3>Pad Woon Sen</h3><p>DoorDash price</p><div class="price">$18.95</div><button class="btn add" onclick="add(3,'Pad Woon Sen',18.95)">Add to order</button></div></div>
+<div class="dish reveal"><span class="n">05</span><div><h3>Fried Rice</h3><p>DoorDash price</p><div class="price">$17.95</div><button class="btn add" onclick="add(4,'Fried Rice',17.95)">Add to order</button></div></div>
+<div class="dish reveal"><span class="n">06</span><div><h3>Ziree Roll</h3><p>Shrimp tempura, tuna, cream cheese, avocado in soy paper, topped with crab, tempura flakes, spicy mayo, eel sauce (FoodBoss listing)</p><div class="price">$15.95</div><button class="btn add" onclick="add(5,'Ziree Roll',15.95)">Add to order</button></div></div>
 </div></div></section>
 
 <section class="order block" id="order"><div class="wrap">
@@ -308,7 +309,7 @@
 <section class="block textback"><div class="wrap">
 <div class="head reveal"><span class="kicker">Busy kitchen? No problem.</span><h2>Missed your call? <em>We text you back</em> in seconds.</h2></div>
 <div class="phone" id="ph">
-<div class="msg">📞 Missed call · (561) 555-0148</div>
+<div class="msg">📞 Missed call from a hungry customer</div>
 <div class="msg me">Hi! Sorry we missed you at Ziree Thai &amp; Sushi, the kitchen's slammed. Want to order? Tap here and skip the wait.</div>
 <div class="msg">Perfect. Pickup at 7:30?</div>
 <div class="msg me">You got it. See you at 7:30!</div>
@@ -324,7 +325,7 @@
 
 <section class="visit" id="visit"><div class="wrap">
 <div><span class="k">Find us</span><h3>401 W Atlantic Ave</h3><address>Suite R7, Delray Beach, FL 33444</address><a class="phone" href="tel:+15612766549">(561) 276-6549</a></div>
-<div><span class="k">Hours</span><h3>Come hungry</h3><p style="color:var(--ink-2);margin-top:10px">Lunch about 11:30 AM–2:40 PM, dinner 5–9:40 PM (DoorDash ordering hours); confirm by phone</p>
+<div><span class="k">Hours</span><h3>Come hungry</h3><p style="color:var(--ink-2);margin-top:10px">Lunch 11:30 AM–2:40 PM · Dinner 5–9:40 PM</p>
 <div style="margin-top:24px"><a class="btn candle" href="#order">Order online</a></div></div>
 </div></section>
 
